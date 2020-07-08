@@ -1,35 +1,23 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import BotaoSwitch from "./BotaoSwitch";
+import { Table, TableContainer, Paper } from "@material-ui/core";
+import TabelaHeader from "./TabelaHeader";
 import PropTypes from "prop-types";
+import LinhaUsuario from "./LinhaUsuario";
+import TabelaBody from "./TabelaBody";
 
 const TabelaUsuario = (props) => {
   const { data } = props;
+  const colunas = [
+    { alinhamento: "center", nome: "ID" },
+    { alinhamento: "center", nome: "Nome" },
+    { alinhamento: "center", nome: "Permissão" },
+    { alinhamento: "center", nome: "Ativo" },
+  ];
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">ID</TableCell>
-            <TableCell align="center">Nome</TableCell>
-            <TableCell align="center">Permissao</TableCell>
-            <TableCell align="center">Ativo</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((usuario) => (
-            <TableRow key={usuario.id}>
-              <TableCell scope="row" align="center">
-                {usuario.id}
-              </TableCell>
-              <TableCell align="center">{usuario.nome}</TableCell>
-              <TableCell align="center">{usuario.permissao}</TableCell>
-              <TableCell align="center">
-                <BotaoSwitch ativo={usuario.ativo} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        <TabelaHeader colunas={colunas} />
+        <TabelaBody data={data} render={(usuario) => <LinhaUsuario key={usuario.id} usuario={usuario} />} />
       </Table>
     </TableContainer>
   );
