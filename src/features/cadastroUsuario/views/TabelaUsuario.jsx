@@ -6,7 +6,7 @@ import LinhaUsuario from "./LinhaUsuario";
 import TabelaBody from "./TabelaBody";
 
 const TabelaUsuario = (props) => {
-  const { data } = props;
+  const { data, ativarUsuario } = props;
   const colunas = [
     { alinhamento: "center", nome: "ID" },
     { alinhamento: "center", nome: "Nome" },
@@ -17,7 +17,10 @@ const TabelaUsuario = (props) => {
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TabelaHeader colunas={colunas} />
-        <TabelaBody data={data} render={(usuario) => <LinhaUsuario key={usuario.id} usuario={usuario} />} />
+        <TabelaBody
+          data={data}
+          render={(usuario) => <LinhaUsuario key={usuario.id} usuario={usuario} ativarUsuario={ativarUsuario} />}
+        />
       </Table>
     </TableContainer>
   );

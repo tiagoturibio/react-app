@@ -7,6 +7,16 @@ export const listarUsuarios = () => async (dispatch) => {
     const usuarios = UsuarioManager.listarUsuarios();
     dispatch(actions.listarUsuarios(usuarios));
   } catch (error) {
-    dispatch(listarUsuarios([]));
+    dispatch(actions.listarUsuarios([]));
+  }
+};
+
+export const ativarUsuario = (usuario, estado) => async (dispatch) => {
+  try {
+    UsuarioManager.ativarUsuario(usuario, estado);
+    const usuarios = UsuarioManager.listarUsuarios();
+    dispatch(actions.listarUsuarios(usuarios));
+  } catch (error) {
+    dispatch(actions.listarUsuarios([]));
   }
 };

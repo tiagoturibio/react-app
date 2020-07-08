@@ -9,6 +9,7 @@ const UsuarioContainer = (props) => {
 
 const mapDispatchToProps = {
   listarUsuarios: operations.listarUsuarios,
+  ativarUsuario: operations.ativarUsuario,
 };
 
 const mapStateToProps = ({ usuario }) => {
