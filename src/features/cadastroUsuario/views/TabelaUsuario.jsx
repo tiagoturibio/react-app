@@ -1,45 +1,45 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-
-const useStyles = makeStyles();
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Switch, Paper } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const TabelaUsuario = (props) => {
-  const classes = useStyles();
+  const { data } = props;
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell align="center">ID</TableCell>
+            <TableCell align="center">Nome</TableCell>
+            <TableCell align="center">Permissao</TableCell>
+            <TableCell align="center">Ativo</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
+          {data.map((usuario) => (
+            <TableRow key={usuario.id}>
+              <TableCell scope="row" align="center">
+                {usuario.id}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="center">{usuario.nome}</TableCell>
+              <TableCell align="center">{usuario.permissao}</TableCell>
+              <TableCell align="center">
+                <Switch checked inputProps={{ "aria-label": "primary checkbox" }} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
+};
+
+TabelaUsuario.propTypes = {
+  data: PropTypes.array,
+};
+
+TabelaUsuario.defaultProps = {
+  data: [],
 };
 
 export default TabelaUsuario;
