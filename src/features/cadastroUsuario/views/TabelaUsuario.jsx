@@ -1,5 +1,6 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Switch, Paper } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
+import BotaoSwitch from "./BotaoSwitch";
 import PropTypes from "prop-types";
 
 const TabelaUsuario = (props) => {
@@ -24,7 +25,7 @@ const TabelaUsuario = (props) => {
               <TableCell align="center">{usuario.nome}</TableCell>
               <TableCell align="center">{usuario.permissao}</TableCell>
               <TableCell align="center">
-                <Switch checked inputProps={{ "aria-label": "primary checkbox" }} />
+                <BotaoSwitch ativo={usuario.ativo} />
               </TableCell>
             </TableRow>
           ))}

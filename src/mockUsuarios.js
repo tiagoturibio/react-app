@@ -1,5 +1,5 @@
 export default [
-  { id: 1, nome: "Tiago Turibio", permissao: "Total", ativo: true },
+  { id: 1, nome: "Tiago Turibio", permissao: "Total", ativo: false },
   { id: 2, nome: "Tiago Turibio", permissao: "Total", ativo: true },
   { id: 3, nome: "Tiago Turibio", permissao: "Total", ativo: true },
   { id: 4, nome: "Tiago Turibio", permissao: "Total", ativo: true },
