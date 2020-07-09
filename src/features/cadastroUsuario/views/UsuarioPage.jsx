@@ -8,7 +8,8 @@ import TabelaHeader from "./TabelaHeader";
 
 const UsuarioPage = (props) => {
   const { usuarios, listarUsuarios, ativarUsuario, excluirUsuario, salvarUsuario } = props;
-  const [usuario, setUsuario] = useState({ nome: "", permissao: "", ativo: false });
+  const estadoInicial = { nome: "", permissao: "", ativo: false };
+  const [usuario, setUsuario] = useState(estadoInicial);
 
   const handleChange = (key, value) => {
     setUsuario({ ...usuario, [key]: value });
