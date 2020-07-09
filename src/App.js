@@ -1,18 +1,20 @@
 import React from "react";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import reduxThunk from "redux-thunk";
-import reducers from "./redux";
 import UsuarioContainer from "./features/cadastroUsuario/views/UsuarioContainer";
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(reduxThunk)));
+import NotificacaoContainer from "./features/notificacao/views/NotificacaoContainer";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 const App = () => {
+  console.log("rerendred");
   return (
-    <Provider store={store}>
+    <React.Fragment>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Menu</Typography>
+        </Toolbar>
+      </AppBar>
       <UsuarioContainer />
-    </Provider>
+      <NotificacaoContainer />
+    </React.Fragment>
   );
 };
 

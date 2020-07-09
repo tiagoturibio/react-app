@@ -6,12 +6,13 @@ import LinhaUsuario from "./LinhaUsuario";
 import TabelaHeader from "./TabelaHeader";
 
 const UsuarioPage = (props) => {
-  const { usuarios, listarUsuarios, ativarUsuario } = props;
+  const { usuarios, listarUsuarios, ativarUsuario, excluirUsuario } = props;
   const colunas = [
     { alinhamento: "center", nome: "ID" },
     { alinhamento: "center", nome: "Nome" },
     { alinhamento: "center", nome: "Permissão" },
     { alinhamento: "center", nome: "Ativo" },
+    { alinhamento: "center", nome: "Ações" },
   ];
   useEffect(() => {
     listarUsuarios();
@@ -24,7 +25,14 @@ const UsuarioPage = (props) => {
         templateBody={
           <TabelaBody
             data={usuarios}
-            render={(usuario) => <LinhaUsuario key={usuario.id} usuario={usuario} ativarUsuario={ativarUsuario} />}
+            render={(usuario) => (
+              <LinhaUsuario
+                key={usuario.id}
+                usuario={usuario}
+                ativarUsuario={ativarUsuario}
+                excluirUsuario={excluirUsuario}
+              />
+            )}
           />
         }
         templateHeader={<TabelaHeader colunas={colunas} />}

@@ -10,6 +10,7 @@ const UsuarioContainer = (props) => {
 const mapDispatchToProps = {
   listarUsuarios: operations.listarUsuarios,
   ativarUsuario: operations.ativarUsuario,
+  excluirUsuario: operations.excluirUsuario,
 };
 
 const mapStateToProps = ({ usuario }) => {

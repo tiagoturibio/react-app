@@ -10,3 +10,12 @@ export const ativarUsuario = (usuario, estado) => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
   }
 };
+
+export const excluirUsuario = (usuario, estado) => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+  const indexUsuario = usuarios.findIndex((item) => item.id === usuario.id);
+  if (indexUsuario > -1) {
+    usuarios.splice(indexUsuario, 1);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }
+};

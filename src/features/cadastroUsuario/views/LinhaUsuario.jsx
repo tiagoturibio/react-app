@@ -1,10 +1,10 @@
 import React from "react";
-import { TableCell, TableRow } from "@material-ui/core";
+import { TableCell, TableRow, Button } from "@material-ui/core";
 import BotaoSwitch from "./BotaoSwitch";
 import PropTypes from "prop-types";
 
 const LinhaUsuario = React.memo(
-  ({ usuario, ativarUsuario }) => {
+  ({ usuario, ativarUsuario, excluirUsuario }) => {
     const onChange = (estado) => {
       ativarUsuario(usuario, estado);
     };
@@ -21,6 +21,9 @@ const LinhaUsuario = React.memo(
         <TableCell align="center">
           <BotaoSwitch ativo={usuario.ativo} onChange={onChange} />
         </TableCell>
+        <TableCell align="center">
+          <Button onClick={() => excluirUsuario(usuario)}>Excluir</Button>
+        </TableCell>
       </TableRow>
     );
   },
@@ -29,6 +32,8 @@ const LinhaUsuario = React.memo(
 
 LinhaUsuario.propTypes = {
   usuario: PropTypes.object,
+  ativarUsuario: PropTypes.func,
+  excluirUsuario: PropTypes.func,
 };
 
 export default LinhaUsuario;
