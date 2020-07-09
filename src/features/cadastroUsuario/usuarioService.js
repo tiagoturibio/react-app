@@ -19,3 +19,9 @@ export const excluirUsuario = (usuario, estado) => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
   }
 };
+
+export const salvarUsuario = (usuario) => {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+  usuarios.push({ ...usuario, id: Math.floor(Math.random() * 200) + 25 });
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+};

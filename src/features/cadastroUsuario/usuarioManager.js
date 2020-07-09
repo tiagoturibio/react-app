@@ -11,3 +11,7 @@ export const ativarUsuario = (usuario, estado) => {
 export const excluirUsuario = (usuario) => {
   return usuarioService.excluirUsuario(usuario);
 };
+
+export const salvarUsuario = (usuario) => {
+  return usuarioService.salvarUsuario(usuario);
+};

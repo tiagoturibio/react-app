@@ -27,10 +27,20 @@ export const excluirUsuario = (usuario) => async (dispatch) => {
   try {
     UsuarioManager.excluirUsuario(usuario);
     const usuarios = UsuarioManager.listarUsuarios();
-    throw new Error();
     dispatch(actions.listarUsuarios(usuarios));
   } catch (error) {
-    //dispatch(actions.listarUsuarios([]));
+    dispatch(actions.listarUsuarios([]));
     dispatch(notificacaoActions.notificar("Erro ao excluir usuario"));
+  }
+};
+
+export const salvarUsuario = (usuario) => async (dispatch) => {
+  try {
+    UsuarioManager.salvarUsuario(usuario);
+    const usuarios = UsuarioManager.listarUsuarios();
+    dispatch(actions.listarUsuarios(usuarios));
+  } catch (error) {
+    dispatch(actions.listarUsuarios([]));
+    dispatch(notificacaoActions.notificar(error.message));
   }
 };

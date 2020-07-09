@@ -1,12 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import TabelaUsuario from "./TabelaUsuario";
 import TabelaBody from "./TabelaBody";
 import LinhaUsuario from "./LinhaUsuario";
+import UsuarioForm from "./UsuarioForm";
 import TabelaHeader from "./TabelaHeader";
 
 const UsuarioPage = (props) => {
-  const { usuarios, listarUsuarios, ativarUsuario, excluirUsuario } = props;
+  const { usuarios, listarUsuarios, ativarUsuario, excluirUsuario, salvarUsuario } = props;
+  const [usuario, setUsuario] = useState({ nome: "", permissao: "", ativo: false });
+
+  const handleChange = (key, value) => {
+    setUsuario({ ...usuario, [key]: value });
+  };
+
+  const handleSave = (usuario) => {
+    salvarUsuario(usuario);
+  };
+
   const colunas = [
     { alinhamento: "center", nome: "ID" },
     { alinhamento: "center", nome: "Nome" },
@@ -18,25 +29,30 @@ const UsuarioPage = (props) => {
     listarUsuarios();
   }, [listarUsuarios]);
   return (
-    <Grid container className="App" justify="center" direction="row">
-      <TabelaUsuario
-        data={usuarios}
-        ativarUsuario={ativarUsuario}
-        templateBody={
-          <TabelaBody
-            data={usuarios}
-            render={(usuario) => (
-              <LinhaUsuario
-                key={usuario.id}
-                usuario={usuario}
-                ativarUsuario={ativarUsuario}
-                excluirUsuario={excluirUsuario}
-              />
-            )}
-          />
-        }
-        templateHeader={<TabelaHeader colunas={colunas} />}
-      />
+    <Grid item container className="App" direction="row" spacing={3}>
+      <Grid item xs={6}>
+        <TabelaUsuario
+          data={usuarios}
+          ativarUsuario={ativarUsuario}
+          templateBody={
+            <TabelaBody
+              data={usuarios}
+              render={(usuario) => (
+                <LinhaUsuario
+                  key={usuario.id}
+                  usuario={usuario}
+                  ativarUsuario={ativarUsuario}
+                  excluirUsuario={excluirUsuario}
+                />
+              )}
+            />
+          }
+          templateHeader={<TabelaHeader colunas={colunas} />}
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <UsuarioForm usuario={usuario} handleChange={handleChange} handleSave={handleSave} />
+      </Grid>
     </Grid>
   );
 };

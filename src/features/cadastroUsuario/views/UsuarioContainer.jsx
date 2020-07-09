@@ -11,6 +11,7 @@ const mapDispatchToProps = {
   listarUsuarios: operations.listarUsuarios,
   ativarUsuario: operations.ativarUsuario,
   excluirUsuario: operations.excluirUsuario,
+  salvarUsuario: operations.salvarUsuario,
 };
 
 const mapStateToProps = ({ usuario }) => {
